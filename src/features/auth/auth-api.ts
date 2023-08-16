@@ -6,14 +6,6 @@ import GitHubProvider from "next-auth/providers/github";
 const configureIdentityProvider = () => {
   const providers: Array<Provider> = [];
 
-  if (process.env.AUTH_GITHUB_ID && process.env.AUTH_GITHUB_SECRET) {
-    providers.push(
-      GitHubProvider({
-        clientId: process.env.AUTH_GITHUB_ID!,
-        clientSecret: process.env.AUTH_GITHUB_SECRET!,
-      })
-    );
-  }
 
   if (
     process.env.AZURE_AD_CLIENT_ID &&

@@ -13,7 +13,7 @@ export const MainMenu = () => {
           title="Home"
         >
           <Avatar className="h-8 w-8">
-            <AvatarImage src="/ai-icon.png" />
+            <AvatarImage src="/motorq.png" />
           </Avatar>
         </Link>
         <Link

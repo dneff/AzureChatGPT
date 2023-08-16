@@ -32,9 +32,9 @@ export const ChatReportingUI: FC<Props> = async (props) => {
           {chats.map((message, index) => (
             <ChatRow
               name={
-                message.role === "user" ? chatThread.useName : "AzureChatGPT"
+                message.role === "user" ? chatThread.useName : "MotorqGPT"
               }
-              profilePicture={message.role === "user" ? "" : "/ai-icon.png"}
+              profilePicture={message.role === "user" ? "" : "/motorq.png"}
               message={message.content}
               type={message.role}
               key={index}

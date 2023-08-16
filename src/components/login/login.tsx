@@ -16,10 +16,10 @@ export const LogIn = () => {
       <CardHeader className="gap-2">
         <CardTitle className="text-2xl flex gap-2">
           <Avatar className="h-8 w-8">
-            <AvatarImage src={"ai-icon.png"} />
+            <AvatarImage src={"motorq.png"} />
           </Avatar>
           <span>
-            Azure<span className="text-muted-foreground">ChatGPT</span>
+            Motorq<span className="text-muted-foreground">GPT</span>
           </span>
         </CardTitle>
         <CardDescription>
@@ -27,7 +27,6 @@ export const LogIn = () => {
         </CardDescription>
       </CardHeader>
       <CardContent className="grid gap-4">
-        <Button onClick={() => signIn("github")}>GitHub</Button>
         <Button onClick={() => signIn("azure-ad")}> Microsoft 365</Button>
       </CardContent>
     </Card>

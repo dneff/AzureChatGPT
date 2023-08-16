@@ -94,10 +94,10 @@ export const ChatUI: FC<Prop> = (props) => {
           {messages.map((message, index) => (
             <ChatRow
               name={
-                message.role === "user" ? session?.user?.name! : "AzureChatGPT"
+                message.role === "user" ? session?.user?.name! : "MotorqGPT"
               }
               profilePicture={
-                message.role === "user" ? session?.user?.image! : "/ai-icon.png"
+                message.role === "user" ? session?.user?.image! : "/motorq.png"
               }
               message={message.content}
               type={message.role}
