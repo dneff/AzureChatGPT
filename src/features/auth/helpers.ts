@@ -20,6 +20,14 @@ export const userHashedId = async (): Promise<string> => {
   throw new Error("User not found");
 };
 
+export const getUserId = async (): Promise<string> => {
+  const user = await userSession();
+  if (user) {
+    return user.email;
+  }
+  throw new Error("User not found");
+};
+
 export type UserModel = {
   name: string;
   image: string;

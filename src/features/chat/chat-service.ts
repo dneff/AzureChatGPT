@@ -88,6 +88,7 @@ export interface ChatMessageModel {
   content: string;
   role: chatRole;
   type: "CHAT_MESSAGE";
+  userEmail?: string;
 }
 
 export type chatRole = "system" | "user" | "assistant" | "function";

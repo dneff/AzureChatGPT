@@ -23,13 +23,13 @@ export const initAndGuardChatSession = async (props: PromptGPTProps) => {
   const chatThread = await EnsureChatThreadIsForCurrentUser(id);
   const chats = await FindAllChats(id);
 
-  await updateChatThreadTitle(
-    chatThread,
-    chats,
-    model,
-    lastHumanMessage.content
-  );
-
+  if(chatThread.name === "new chat") {
+    await updateChatThreadTitle(
+      chatThread,
+      model,
+      lastHumanMessage.content
+    );   
+  }
   return {
     id,
     lastHumanMessage,

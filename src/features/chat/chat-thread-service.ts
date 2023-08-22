@@ -112,17 +112,14 @@ export const UpsertChatThread = async (chatThread: ChatThreadModel) => {
 
 export const updateChatThreadTitle = async (
   chatThread: ChatThreadModel,
-  messages: ChatMessageModel[],
   modelName: string,
   userMessage: string
 ) => {
-  if (messages.length === 0) {
     await UpsertChatThread({
       ...chatThread,
       model: modelName,
       name: userMessage.substring(0, 30),
     });
-  }
 };
 
 export const CreateChatThread = async () => {

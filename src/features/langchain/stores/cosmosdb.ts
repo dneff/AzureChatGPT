@@ -25,6 +25,7 @@ export interface CosmosDBChatMessageHistoryFields {
   sessionId: string;
   userId: string;
   config: CosmosDBClientConfig;
+  userEmail: string;
 }
 
 export class CosmosDBChatMessageHistory extends BaseListChatMessageHistory {
@@ -34,13 +35,14 @@ export class CosmosDBChatMessageHistory extends BaseListChatMessageHistory {
 
   private sessionId: string;
   private userId: string;
-
+  private userEmail: string;
   private client: CosmosClient;
 
-  constructor({ sessionId, userId, config }: CosmosDBChatMessageHistoryFields) {
+  constructor({ sessionId, userId, userEmail, config }: CosmosDBChatMessageHistoryFields) {
     super();
     this.sessionId = sessionId;
     this.userId = userId;
+    this.userEmail = userEmail;
     this.config = config;
     const { endpoint, key } = config;
     this.client = new CosmosClient({ endpoint, key });
@@ -66,6 +68,7 @@ export class CosmosDBChatMessageHistory extends BaseListChatMessageHistory {
       role: message instanceof AIMessage ? "assistant" : "user",
       threadId: this.sessionId,
       userId: this.userId,
+      userEmail: this.userEmail
     };
 
     await addChatMessage(modelToSave);

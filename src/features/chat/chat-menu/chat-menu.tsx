@@ -3,10 +3,10 @@ import { FindAllChatThreadForCurrentUser } from "@/features/chat/chat-thread-ser
 import { ThemeToggle } from "@/features/theme/theme-toggle";
 import { MenuItems } from "./menu-items";
 import { NewChat } from "./new-chat";
+import { useState } from "react";
 
 export const ChatMenu = async () => {
   const items = await FindAllChatThreadForCurrentUser();
-
   return (
     <Menu>
       <MenuHeader className="justify-end">
