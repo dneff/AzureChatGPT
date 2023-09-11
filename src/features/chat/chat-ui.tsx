@@ -68,8 +68,8 @@ export const ChatUI: FC<Prop> = (props) => {
     setBody((e) => ({ ...e, model: value }));
   };
 
-  const onHandleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    handleSubmit(e);
+  const onHandleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    await handleSubmit(e);
   };
 
   return (

@@ -8,7 +8,7 @@ import {
   MessagesPlaceholder,
   SystemMessagePromptTemplate,
 } from "langchain/prompts";
-import { userHashedId } from "../auth/helpers";
+import { userHashedId, getUserId } from "../auth/helpers";
 import { CosmosDBChatMessageHistory } from "../langchain/stores/cosmosdb";
 import { PromptGPTProps, initAndGuardChatSession } from "./chat-api-helpers";
 
@@ -18,10 +18,15 @@ export const PromptGPT = async (props: PromptGPTProps) => {
   const { stream, handlers } = LangChainStream();
 
   const userId = await userHashedId();
-
+  const userEmail = await getUserId();
+  let azureOpenAIApiDeploymentName: string = process.env.AZURE_OPENAI_API_DEPLOYMENT_NAME;
+  if(props.model === "GPT-4") {
+    azureOpenAIApiDeploymentName = process.env.AZURE_OPENAI_API_DEPLOYMENT_NAME_GPT4!;
+  }
   const chat = new ChatOpenAI({
     temperature: 0,
     streaming: true,
+    azureOpenAIApiDeploymentName,
   });
 
   const memory = new BufferWindowMemory({
@@ -31,6 +36,7 @@ export const PromptGPT = async (props: PromptGPTProps) => {
     chatHistory: new CosmosDBChatMessageHistory({
       sessionId: id,
       userId: userId,
+      userEmail: userEmail,
       config: {
         db: process.env.AZURE_COSMOSEDBDB_DB_NAME,
         container: process.env.AZURE_COSMOSEDBDB_CONTAINER_NAME,
